@@ -1,4 +1,4 @@
-```
+
 # Portfolio Symfony avec EasyAdmin
 
 Bienvenue dans le projet **Portfolio Symfony** utilisant EasyAdmin pour gérer le contenu des pages. Ce projet a pour but de créer un portfolio flexible, facile à personnaliser, avec une interface d'administration moderne.
