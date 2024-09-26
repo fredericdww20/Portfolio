@@ -24,7 +24,7 @@ Suivez ces étapes pour installer et lancer le projet localement :
 
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/votre-utilisateur/votre-repo.git
+   git clone https://github.com/fredericdww20/Portfolio
    cd votre-repo
    ```
 
