@@ -12,6 +12,15 @@
         {% endblock %}
     </head>
     <body>
+    <!-- Inclusion du header -->
+    {% include 'partials/_header.html.twig' %}
+
+    <!-- Contenu spécifique à chaque page -->
+    <main>
         {% block body %}{% endblock %}
+    </main>
+
+    <!-- Inclusion du footer -->
+    {% include 'partials/_footer.html.twig' %}
     </body>
 </html>
