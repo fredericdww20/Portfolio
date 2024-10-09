@@ -1,0 +1,22 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ page.title }}</h1>
+
+    {# Insérer un titre spécifique basé sur son ID #}
+    {% if contentElements[1] is defined %}
+        <h2>{{ contentElements[1].value }}</h2>
+    {% endif %}
+
+    {# Insérer un autre élément, comme une description, à un autre endroit #}
+    {% if contentElements[2] is defined %}
+        <p>{{ contentElements[2].value }}</p>
+        <p>{{ contentElements[4].value }}</p>
+    {% endif %}
+
+    {# Insérer une image à un emplacement précis sur la page #}
+    {% if contentElements[3] is defined %}
+        <img src="{{ contentElements[3].value }}" alt="Image">
+    {% endif %}
+{% endblock %}
