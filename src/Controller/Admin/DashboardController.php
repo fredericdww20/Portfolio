@@ -8,9 +8,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
+
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -42,11 +46,13 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToRoute('Accueil', 'fa fa-home', 'page_show', ['slug' => 'accueil']);
+        yield MenuItem::linkToRoute('Accueil', 'fa fa-home', 'accueil');
         yield MenuItem::linkToDashboard('Dashboard', 'fa-solid fa-table-columns');
         yield MenuItem::linkToCrud('Page', 'fas fa-list', Page::class);
 
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
     }
+
+
 }
