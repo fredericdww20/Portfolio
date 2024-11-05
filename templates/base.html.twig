@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="Videograph Template">
+        <meta name="keywords" content="Videograph, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}{{ page.title }}{% endblock %}</title>
+
+        <!-- Google Font -->
+
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            <link rel="stylesheet" href="css/custom.css" type="text/css">
+            <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+            <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+            <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+            <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+            <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+            <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+            <link rel="stylesheet" href="css/style.css" type="text/css">
+            <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+                  rel="stylesheet">
         {% endblock %}
 
-        {% block javascripts %}
+    {#    {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+        {% endblock %} #}
     </head>
     <body>
+    <!-- Animation Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
     <!-- Inclusion du header -->
     {% include 'partials/_header.html.twig' %}
 
     <!-- Contenu spécifique à chaque page -->
     <main>
-        {% block body %}{% endblock %}
+        {% block body %}
+
+            <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+                  rel="stylesheet">fr
+        {% endblock %}
     </main>
 
     <!-- Inclusion du footer -->
     {% include 'partials/_footer.html.twig' %}
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
     </body>
 </html>

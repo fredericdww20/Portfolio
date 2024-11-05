@@ -1,11 +1,11 @@
 <?php
 
+// src/Entity/ContentElement.php
 namespace App\Entity;
 
-use App\Repository\ContentElementRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ContentElementRepository::class)]
+#[ORM\Entity()]
 class ContentElement
 {
     #[ORM\Id]
@@ -19,11 +19,15 @@ class ContentElement
     #[ORM\Column(type: 'text', nullable: true)]
     private $value; // Content value (text, URL for image, etc.)
 
+    // Relation optionnelle avec une Page
     #[ORM\ManyToOne(targetEntity: Page::class, inversedBy: 'contentElements')]
-    #[ORM\JoinColumn(nullable: false)]
     private $page;
 
-    // Getters and Setters
+    // Relation optionnelle avec un Bloc
+    #[ORM\ManyToOne(targetEntity: Bloc::class, inversedBy: 'contentElements')]
+    private $bloc;
+
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -64,5 +68,22 @@ class ContentElement
         $this->page = $page;
 
         return $this;
+    }
+
+    public function getBloc(): ?Bloc
+    {
+        return $this->bloc;
+    }
+
+    public function setBloc(?Bloc $bloc): self
+    {
+        $this->bloc = $bloc;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->type . ' (ID: ' . $this->id . ')';
     }
 }

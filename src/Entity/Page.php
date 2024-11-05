@@ -1,13 +1,13 @@
 <?php
 
+// src/Entity/Page.php
 namespace App\Entity;
 
-use App\Repository\PageRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PageRepository::class)]
+#[ORM\Entity()]
 class Page
 {
     #[ORM\Id]
@@ -21,15 +21,21 @@ class Page
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     private $slug;
 
+    // Relation pour plusieurs Blocs
+    #[ORM\OneToMany(mappedBy: 'page', targetEntity: Bloc::class, cascade: ['persist', 'remove'])]
+    private $blocs;
+
+    // Relation pour plusieurs ContentElements individuels
     #[ORM\OneToMany(mappedBy: 'page', targetEntity: ContentElement::class, cascade: ['persist', 'remove'])]
     private $contentElements;
 
     public function __construct()
     {
+        $this->blocs = new ArrayCollection();
         $this->contentElements = new ArrayCollection();
     }
 
-    // Getters and Setters
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -56,6 +62,36 @@ class Page
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bloc[]
+     */
+    public function getBlocs(): Collection
+    {
+        return $this->blocs;
+    }
+
+    public function addBloc(Bloc $bloc): self
+    {
+        if (!$this->blocs->contains($bloc)) {
+            $this->blocs[] = $bloc;
+            $bloc->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBloc(Bloc $bloc): self
+    {
+        if ($this->blocs->removeElement($bloc)) {
+            // set the owning side to null (unless already changed)
+            if ($bloc->getPage() === $this) {
+                $bloc->setPage(null);
+            }
+        }
 
         return $this;
     }
